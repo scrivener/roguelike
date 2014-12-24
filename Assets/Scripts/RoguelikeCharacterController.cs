@@ -32,12 +32,21 @@ public class RoguelikeCharacterController : MonoBehaviour {
     }
 
     void moveCommand(Vector3 where) {
-        RaycastHit2D hit = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Enemy"));
-        if (!hit) {
+        RaycastHit2D hitEnemy = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Enemy"));
+        RaycastHit2D hitStairs = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Stairs"));
+        if (!hitEnemy && !hitStairs) {
             transform.position += where;
+        } else if (hitEnemy) {
+            resolveHit(hitEnemy);
+        } else if (hitStairs) {
+            win();
         } else {
-            resolveHit(hit);
+            // Wat.
         }
+    }
+
+    void win() {
+        Application.LoadLevel("VictoryScene");
     }
 
     public void damage(int amount) {

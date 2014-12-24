@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 453312}
   - 198: {fileID: 19853312}
   - 199: {fileID: 19953312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DamagedParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21253312}
   - 114: {fileID: 11453312}
   - 61: {fileID: 6153312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
