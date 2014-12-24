@@ -5,6 +5,7 @@ public class Monster : MonoBehaviour {
 
 	int health;
 	public int maxHealth;
+    public int power;  // Damage done on hit.
 
     ParticleSystem damagedParticle;
 
