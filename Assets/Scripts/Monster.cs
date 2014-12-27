@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Monster : MonoBehaviour {
@@ -6,6 +7,7 @@ public class Monster : MonoBehaviour {
 	int health;
 	public int maxHealth;
     public int power;  // Damage done on hit.
+	Slider healthSlider;
 
     ParticleSystem damagedParticle;
 
@@ -13,6 +15,7 @@ public class Monster : MonoBehaviour {
 	void Start () {
 		health = maxHealth;
         damagedParticle = GetComponentInChildren<ParticleSystem>();
+		healthSlider = GetComponentInChildren<Slider>();
     }
 	
 	// Update is called once per frame
@@ -25,6 +28,7 @@ public class Monster : MonoBehaviour {
 	}
 	public void damage(int damage) {
 		health -= damage;
+		healthSlider.value = health;
         if (damagedParticle != null) {
             damagedParticle.Play();
         }
