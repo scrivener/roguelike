@@ -8,6 +8,7 @@ public class Monster : MonoBehaviour {
 	public int maxHealth;
     public int power;  // Damage done on hit.
 	Slider healthSlider;
+    KillCounter killCounter;
 
     ParticleSystem damagedParticle;
 
@@ -16,6 +17,7 @@ public class Monster : MonoBehaviour {
 		health = maxHealth;
         damagedParticle = GetComponentInChildren<ParticleSystem>();
 		healthSlider = GetComponentInChildren<Slider>();
+        killCounter = GameObject.FindGameObjectWithTag("Player").GetComponent<KillCounter>();
     }
 	
 	// Update is called once per frame
@@ -38,6 +40,7 @@ public class Monster : MonoBehaviour {
 
 	}
     void die() {
+        killCounter.kills++;
         Destroy(gameObject);
     }
 }
