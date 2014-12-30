@@ -9,13 +9,15 @@ public class RoguelikeCharacterController : MonoBehaviour {
     private Slider healthSlider;
     ParticleSystem damagedParticle;
 
+    public GameObject MonsterController;
+    MonsterManager monsterManager;
 
     
     // Use this for initialization
     void Start () {
         healthSlider = healthBar.GetComponent<Slider>();
         damagedParticle = GetComponentInChildren<ParticleSystem>();
-
+        monsterManager = MonsterController.GetComponent<MonsterManager>();
     }
 
     // Update is called once per frame
@@ -37,8 +39,10 @@ public class RoguelikeCharacterController : MonoBehaviour {
 		RaycastHit2D hitWall = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Walls"));
         if (!hitEnemy && !hitStairs && !hitWall) {
             transform.position += where;
+            monsterManager.tick();
         } else if (hitEnemy) {
             resolveHit(hitEnemy);
+            monsterManager.tick();
         } else if (hitStairs) {
             win();
         } else {

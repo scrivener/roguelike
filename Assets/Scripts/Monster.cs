@@ -43,4 +43,38 @@ public class Monster : MonoBehaviour {
         killCounter.kills++;
         Destroy(gameObject);
     }
+    public void tick() {
+        Vector2 where;
+        if (Random.value < 0.25) {
+            where = Vector2.up;
+        } else if (Random.value < 0.5) {
+            where = -Vector2.up;
+        } else if (Random.value < 0.75) {
+            where = Vector2.right;
+        } else {
+            where = -Vector2.right;
+        }
+
+        int layerMask = (1 << LayerMask.NameToLayer("Enemy")) | 
+                        (1 << LayerMask.NameToLayer("Stairs")) |
+                        (1 << LayerMask.NameToLayer("Walls")) |
+                        (1 << LayerMask.NameToLayer("Player"));
+  
+        // Turn off our own collider to avoid raycast hitting ourself.
+        // This is a hack, but really the whole raycast-to-find-things thing is a hack.
+        BoxCollider2D collider = gameObject.GetComponent<BoxCollider2D>();
+        if (collider != null) {
+            collider.enabled = false;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, where, 1f, layerMask);
+            collider.enabled = true;
+            if (!hit) {
+                transform.position += (Vector3)where;
+            } else {
+                Debug.Log(hit.collider.tag);
+            }
+        }
+
+
+
+    }
 }
