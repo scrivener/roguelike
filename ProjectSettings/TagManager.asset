@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Monster
   - Scenery
+  - Item
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   User Layer 14: Columns
   User Layer 15: Stairs
   User Layer 16: Walls
-  User Layer 17: 
+  User Layer 17: Items
   User Layer 18: 
   User Layer 19: 
   User Layer 20: 

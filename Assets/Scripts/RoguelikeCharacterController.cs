@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RoguelikeCharacterController : MonoBehaviour {
 
@@ -12,7 +13,8 @@ public class RoguelikeCharacterController : MonoBehaviour {
     public GameObject MonsterController;
     MonsterManager monsterManager;
 
-    
+    public List<Item> inventory = new List<Item>();
+
     // Use this for initialization
     void Start () {
         healthSlider = healthBar.GetComponent<Slider>();
@@ -31,13 +33,15 @@ public class RoguelikeCharacterController : MonoBehaviour {
         } else if (Input.GetButtonDown ("Left")) {
             moveCommand(-Vector2.right);
         }
+
     }
 
     void moveCommand(Vector3 where) {
         RaycastHit2D hitEnemy = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Enemy"));
         RaycastHit2D hitStairs = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Stairs"));
 		RaycastHit2D hitWall = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Walls"));
-        if (!hitEnemy && !hitStairs && !hitWall) {
+        RaycastHit2D hitItem = Physics2D.Raycast (transform.position, where, 1f, 1 << LayerMask.NameToLayer ("Items"));
+        if (!hitEnemy && !hitStairs && !hitWall && !hitItem) {
             transform.position += where;
             monsterManager.tick();
         } else if (hitEnemy) {
@@ -45,6 +49,11 @@ public class RoguelikeCharacterController : MonoBehaviour {
             monsterManager.tick();
         } else if (hitStairs) {
             win();
+        } else if (hitItem) {
+            transform.position += where;
+            inventory.Add(hitItem.collider.GetComponent<Item>());
+            Debug.Log("Inventory length is now: " + inventory.Count);
+            hitItem.collider.gameObject.SetActive(false);   
         } else {
             // Wat.
         }
