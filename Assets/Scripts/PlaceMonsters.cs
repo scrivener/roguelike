@@ -14,7 +14,7 @@ public Transform monster;
 		//initialize a grid of monsters with lines below
 		//for (int y = 0; y < 5; y++) {
 		//				for (int x = 0; x < 5; x++) {
-			Instantiate (monster, new Vector2 (x, ypositions[i]), Quaternion.identity);
+			Instantiate (monster, new Vector3 (x, ypositions[i], -1), Quaternion.identity);
 			i++;
 						}
 
