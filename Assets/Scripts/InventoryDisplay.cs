@@ -38,7 +38,7 @@ public class InventoryDisplay : MonoBehaviour {
             Debug.Log(item.ToString());
             text += "\n" + item.ToString();
         }
-        Debug.Log("returning " + text);
+//        Debug.Log("returning " + text);
         return text;
     }
 }
