@@ -35,23 +35,23 @@ public class MapMaker : MonoBehaviour {
 	int[,] floorMap = new int[mapxmax,mapymax];
 	
 	//max and min number rooms per floor
-	int minRoomNum = 4;
-	int maxRoomNum = 8;
+	int minRoomNum = 6;
+	int maxRoomNum = 10;
 	
 	//max and min sizes of rooms
 	int minRoomXSize = 3;
-	int maxRoomXSize = 7;
+	int maxRoomXSize = 10;
 	int minRoomYSize = 3;
-	int maxRoomYSize = 7;
+	int maxRoomYSize = 10;
 	
 	void Start () {
 		//Fill the whole dungeon with walls. We will carve out rooms afterward.
 		for (int y = 0; y < mapymax; y++) {
 			for (int x = 0; x < mapxmax; x++) {
 				Instantiate (wall, new Vector2 (x, y), Quaternion.identity);
+				Instantiate (floor, new Vector2 (x, y), Quaternion.identity);
 			}
 		}
-		//Instantiate (floor, new Vector2 (x, y), Quaternion.identity);
 		//array with all walls
 		GameObject[] wallArray = GameObject.FindGameObjectsWithTag ("Wall");
 		
