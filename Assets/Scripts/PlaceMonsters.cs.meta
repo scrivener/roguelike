@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2822357e260c34f7da46dc89e960d6e3
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - monster: {fileID: 415142, guid: 14ef19261508647488e73c220eec88f1, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
