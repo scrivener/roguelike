@@ -79,7 +79,8 @@ public class RoguelikeCharacterController : MonoBehaviour {
     void resolveHit(RaycastHit2D hit) {
 		Monster m = hit.collider.GetComponentInParent<Monster>();
 		if (m != null) {
-			m.damage (this.power);
+			Debug.Log (Inventory.instance.getOffense());
+			m.damage (this.power + Inventory.instance.getOffense());
             this.damage(m.power);
 		}
 		Debug.Log (m.getHealth());
