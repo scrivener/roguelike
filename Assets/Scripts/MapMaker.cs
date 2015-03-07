@@ -45,11 +45,15 @@ public class MapMaker : MonoBehaviour {
 	int maxRoomYSize = 10;
 	
 	void Start () {
+		GameObject terrainParent = new GameObject("Terrain");
+
 		//Fill the whole dungeon with walls. We will carve out rooms afterward.
 		for (int y = 0; y < mapymax; y++) {
 			for (int x = 0; x < mapxmax; x++) {
-				Instantiate (wall, new Vector2 (x, y), Quaternion.identity);
-				Instantiate (floor, new Vector2 (x, y), Quaternion.identity);
+				Transform spawnedWall = Instantiate (wall, new Vector2 (x, y), Quaternion.identity) as Transform;
+				Transform spawnedFloor = Instantiate (floor, new Vector2 (x, y), Quaternion.identity) as Transform;
+				spawnedWall.parent = terrainParent.transform;
+				spawnedFloor.parent = terrainParent.transform;
 			}
 		}
 		//array with all walls
