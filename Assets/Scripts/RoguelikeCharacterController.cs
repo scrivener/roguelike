@@ -51,7 +51,7 @@ public class RoguelikeCharacterController : MonoBehaviour {
             win();
         } else if (hitItem) {
             transform.position += where;
-            inventory.Add(hitItem.collider.GetComponent<Item>());
+            Inventory.instance.inventory.Add(hitItem.collider.GetComponent<Item>());
             Debug.Log("Inventory length is now: " + inventory.Count);
             hitItem.collider.gameObject.SetActive(false);   
         } else {

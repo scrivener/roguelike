@@ -5,18 +5,10 @@ using System.Collections.Generic;
 
 public class InventoryDisplay : MonoBehaviour {
 
-    List<Item> inventory;
     Text text;
 
 	// Use this for initialization
 	void Start () {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null) {
-            RoguelikeCharacterController controller = player.GetComponent<RoguelikeCharacterController>();
-            if (controller != null) {
-                inventory = controller.inventory;
-            }
-        }
         text = GetComponentInChildren<Text>();
 	}
 	
@@ -29,6 +21,7 @@ public class InventoryDisplay : MonoBehaviour {
 
     string generateInventoryText() {
         string text = "Inventory";
+		List<Item> inventory = Inventory.instance.inventory;
         if (inventory == null) {
             Debug.LogError("Inventory is null");
             return text;
