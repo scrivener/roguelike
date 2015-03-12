@@ -5,6 +5,19 @@ public class MapMaker : MonoBehaviour {
 	public Transform wall;
 	public Transform floor;
 	public int[,] dungeonmap;
+
+  // This will contain the one static singleton instance of MapMaker
+  // for the scene. Other code can access it through:
+  //
+  // MapMaker.instance
+  public static MapMaker instance;
+
+  // Awake() is called before Start(). It will only be called once, since
+  // only one instance of MapMaker will ever be created. And when it's
+  // called, 'this' will represent that one instance of MapMaker.
+  void Awake() {
+    MapMaker.instance = this;
+  }
 	
 	//structure to hold door connectivity
 	public class RoomCon{
