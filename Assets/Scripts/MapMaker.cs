@@ -4,6 +4,7 @@ using System.Collections;
 public class MapMaker : MonoBehaviour {
 	public Transform wall;
 	public Transform floor;
+	public int[,] dungeonmap;
 	
 	//structure to hold door connectivity
 	public class RoomCon{
@@ -154,6 +155,7 @@ public class MapMaker : MonoBehaviour {
 							Destroy (wallObject);}}}
 			}
 		}
+		dungeonmap = floorMap;
 	}
 	// Update is called once per frame
 	void Update () {

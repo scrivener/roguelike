@@ -17,6 +17,10 @@ public Transform monster;
 			Instantiate (monster, new Vector3 (x, ypositions[i], -1), Quaternion.identity);
 			i++;
 						}
+		MapMaker mapmaker = gameObject.AddComponent<MapMaker>();
+		print ("0,0");
+		print (mapmaker.dungeonmap [0, 0]);
+	
 
 	}
 	
