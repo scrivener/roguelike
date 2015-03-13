@@ -81,7 +81,7 @@ public class RoguelikeCharacterController : MonoBehaviour {
 		if (m != null) {
 			Debug.Log (Inventory.instance.getOffense());
 			m.damage (this.power + Inventory.instance.getOffense());
-            this.damage(m.power);
+            this.damage(Mathf.Max (0, m.power - Inventory.instance.getDefense()));
 		}
 		Debug.Log (m.getHealth());
 	}
