@@ -13,8 +13,6 @@ public class RoguelikeCharacterController : MonoBehaviour {
     public GameObject MonsterController;
     MonsterManager monsterManager;
 
-    public List<Item> inventory = new List<Item>();
-
     // Use this for initialization
     void Start () {
         healthSlider = healthBar.GetComponent<Slider>();
@@ -52,7 +50,7 @@ public class RoguelikeCharacterController : MonoBehaviour {
         } else if (hitItem) {
             transform.position += where;
             Inventory.instance.inventory.Add(hitItem.collider.GetComponent<Item>());
-            Debug.Log("Inventory length is now: " + inventory.Count);
+            Debug.Log("Inventory length is now: " + Inventory.instance.inventory.Count);
             hitItem.collider.gameObject.SetActive(false);   
         } else {
             // Wat.
