@@ -30,7 +30,9 @@ public class RoguelikeCharacterController : MonoBehaviour {
             moveCommand(Vector2.right);
         } else if (Input.GetButtonDown ("Left")) {
             moveCommand(-Vector2.right);
-        }
+        } else if (Input.GetButtonDown ("DrinkPotion")) {
+			drinkPotion();
+		}
 
     }
 
@@ -56,6 +58,17 @@ public class RoguelikeCharacterController : MonoBehaviour {
             // Wat.
         }
     }
+
+	void drinkPotion() {
+		if (Inventory.instance.getPotionCount() <= 0) {
+			Debug.Log ("No potions.");
+			return;
+		}
+
+		Inventory.instance.usePotion();
+		healthSlider.value = healthSlider.maxValue;
+		monsterManager.tick ();
+	}
 
     void win() {
         Application.LoadLevel("VictoryScene");

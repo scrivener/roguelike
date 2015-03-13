@@ -31,4 +31,19 @@ public class Inventory : MonoBehaviour {
 		}
 		return defense;
 	}
+
+	public int getPotionCount() {
+		int count = 0;
+		foreach (Item item in inventory) {
+			if (item.tag == "Potion") {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public void usePotion() {
+		int index = inventory.FindIndex(item => item.tag == "Potion");
+		inventory.RemoveAt(index);
+	}
 }
