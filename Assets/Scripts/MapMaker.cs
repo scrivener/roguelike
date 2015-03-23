@@ -7,17 +7,13 @@ public class MapMaker : MonoBehaviour {
 
 	public static MapMaker instance;
 
-	void Awake(){
-		instance=this;
-	}
-	//structure to hold door connectivity
 	public class RoomCon{
 		public int keyValue; //index of door
 		public int doorX;  //xpos of door (in floorMap)
 		public int doorY; //ypos of door (in floorMap)
 		public int doorNeighbor; //indeces of next door connected to this one
 	}
-	//array shuffling method
+
 	public void reshuffle(int[] keyArray)
 	{
 		for (int i = 0; i < keyArray.Length; i++ )
@@ -28,16 +24,28 @@ public class MapMaker : MonoBehaviour {
 			keyArray[r] = tmp;
 		}
 	}
+
+	public static int mapxmax=41;
+	public static int mapymax=41;
+
+	public int[,] floorMap = new int[mapxmax,mapymax];
+	
+	void Awake(){
+		instance=this;
+	
+	//structure to hold door connectivity
+
+	//array shuffling method
+	
 	
 	// min and max for map boundaries
 	//we're going to make 0,0 the CORNER, not the origin, to avoid headaches. Camera shifts accordingly.
-	static int mapxmax=41;
-	static int mapymax=41;
+
 	
 	//floor map array--int arrays automatically are full of 0s
-	//0 is empty, 1 is temp room placement pending overlap check, 2 is room, 3 is door
+	//0 is wall, 1 is temp room placement pending overlap check, 2 is room, 3 is door
 	//4 is hall
-	public int[,] floorMap = new int[mapxmax,mapymax];
+	
 	
 	//max and min number rooms per floor
 	int minRoomNum = 6;
@@ -49,7 +57,7 @@ public class MapMaker : MonoBehaviour {
 	int minRoomYSize = 3;
 	int maxRoomYSize = 10;
 	
-	void Start () {
+	//void Start () {
 		GameObject terrainParent = new GameObject("Terrain");
 
 		//Fill the whole dungeon with walls. We will carve out rooms afterward.
@@ -159,6 +167,9 @@ public class MapMaker : MonoBehaviour {
 							Destroy (wallObject);}}}
 			}
 		}
+		//for (int q=0; q<mapxmax; q++){
+		//	for (int w=0; w<mapymax; w++){
+		//		print (MapMaker.instance.floorMap[q,w]);}}
 	}
 	// Update is called once per frame
 	void Update () {
