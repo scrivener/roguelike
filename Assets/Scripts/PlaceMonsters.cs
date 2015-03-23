@@ -6,6 +6,9 @@ public Transform monster;
 	// Use this for initialization
 	// make a grid of monsters
 	void Start () {
+
+		print ("testing instantiation of mapmaker");
+		print (MapMaker.instance.floorMap[0,0]);
 		int[] xpositions = {7, 12, -3, 14, 16, 0};
 		int[] ypositions = {4, 3, 1, 0, 0, 0};
 		int i = 0;

@@ -4,7 +4,12 @@ using System.Collections;
 public class MapMaker : MonoBehaviour {
 	public Transform wall;
 	public Transform floor;
-	
+
+	public static MapMaker instance;
+
+	void Awake(){
+		instance=this;
+	}
 	//structure to hold door connectivity
 	public class RoomCon{
 		public int keyValue; //index of door
@@ -32,7 +37,7 @@ public class MapMaker : MonoBehaviour {
 	//floor map array--int arrays automatically are full of 0s
 	//0 is empty, 1 is temp room placement pending overlap check, 2 is room, 3 is door
 	//4 is hall
-	int[,] floorMap = new int[mapxmax,mapymax];
+	public int[,] floorMap = new int[mapxmax,mapymax];
 	
 	//max and min number rooms per floor
 	int minRoomNum = 6;
